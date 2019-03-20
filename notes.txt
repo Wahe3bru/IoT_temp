@@ -1,0 +1,5 @@
+last day of month
+ email with the months highest/coldest/average temp
+ to get last day: https://stackoverflow.com/questions/42950/get-last-day-of-the-month-in-python
+
+ 
