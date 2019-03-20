@@ -1,6 +1,11 @@
 # IoT_temp
 A multi stage project in learning IoT; the logic and planning involved. <br>
 Hoping to pick up new skills as they are required.
+##### skills to learn:
+- unit testing
+- data pipeline/s (luigi / airflow)
+- software development best practices
+- AWS (boto)
 
 ### Proposed stages of development
 #### stage: Hardware
@@ -26,3 +31,7 @@ Hoping to pick up new skills as they are required.
 - [ ] basics Dash Dashboard
 - - [ ] optional: Tableau Dashboard
 - [ ] web accessible Dash Dashboard (login)
+
+#### Further stages:
+- a similar pipeline using Azure and GCP
+- using a NoSQL db
