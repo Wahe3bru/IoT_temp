@@ -37,8 +37,10 @@ temp_max = str(np.max(day_temp))
 hum_min =  str(np.min(day_hum))
 hum_mean = str(np.mean(day_hum))
 hum_max = str(np.max(day_hum))
+log_counts = str(row_counts)
 
-day_stats_row = [date, temp_min, temp_mean, temp_max, hum_min, hum_mean, hum_max]
+day_stats_row = [date, temp_min, temp_mean, temp_max, hum_min, hum_mean,
+                 hum_max, log_counts]
 
 sh_write = client.open('daily_stats')
 try:
@@ -47,7 +49,7 @@ except:
     wks_write = sh_write.add_worksheet(year, rows=0)
     wks_write.append_table(values=['Date', 'Temperature-Min', 'Temperature-Mean',
                              'Temperature-Max', 'Humidity-Min', 'Humidity-Mean',
-                             'Humidity-Max',])
+                             'Humidity-Max', '#Records'])
 
 wks_write.append_table(values=day_stats_row)
 
