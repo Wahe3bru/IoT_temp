@@ -1,0 +1,28 @@
+# testing out pygsheets
+# add sensor data part
+
+import datetime
+import pygsheets
+
+client = pygsheets.authorize()
+
+current_time = datetime.datetime.now()
+month_year = current_time.strftime("%b-%Y")
+month_year
+
+# Open the spreadsheet and this months sheet .
+sh = client.open('test1')
+
+try:
+    wks = sh.worksheet_by_title(month_year)
+except:
+    wks = sh.add_worksheet(month_year, rows=0)
+    wks.append_table(values=['timestamp', 'temperature', 'humidity'])
+
+timestamp = current_time.strftime("%Y-%m-%d %H:%M")
+#get data from sensor <<--------------------------------
+temperature,humidity = 25,66
+row = [timestamp, temperature, humidity]
+
+# append row
+wks.append_table(values=row)
