@@ -1,8 +1,6 @@
-# testing out pygsheets
-# add sensor data part
-
 import datetime
 import pygsheets
+import Adafruit_DHT
 
 client = pygsheets.authorize()
 
@@ -20,8 +18,7 @@ except:
     wks.append_table(values=['timestamp', 'temperature', 'humidity'])
 
 timestamp = current_time.strftime("%Y-%m-%d %H:%M")
-#get data from sensor <<--------------------------------
-temperature,humidity = 25,66
+humidity, temperature = Adafruit_DHT.read_retry(11, 17)
 row = [timestamp, temperature, humidity]
 
 # append row
