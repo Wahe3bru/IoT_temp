@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 import datetime
 import pygsheets
 import numpy as np
