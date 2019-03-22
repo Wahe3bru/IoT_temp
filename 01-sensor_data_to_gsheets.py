@@ -4,7 +4,9 @@ import datetime
 import Adafruit_DHT
 import helper
 
+
 def main():
+
     current_time = datetime.datetime.now()
     month_year = current_time.strftime("%b-%Y")
 
@@ -17,5 +19,7 @@ def main():
     # append row
     wks.append_table(values=row)
 
+
 if __name__ == '__main__':
+
     main()
