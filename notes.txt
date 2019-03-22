@@ -4,12 +4,10 @@ last day of month
  email with the months highest/coldest/average temp
  to get last day: https://stackoverflow.com/questions/42950/get-last-day-of-the-month-in-python
 
-<<<<<<< HEAD
 schedule:
-$ crontab -e
+ $ crontab -e
 
-## Crontab Configuration ##
-0,30 * * * * (bash -c 'cd ~/path/to/script && python scriptName.py')
-=======
+ ## Crontab Configuration ##
+ 0,30 * * * * (bash -c 'cd ~/path/to/script && python scriptName.py')
+
 email guide: https://realpython.com/python-send-email/
->>>>>>> f00d546f10c558387ae4dc1b44394dcafdb7a16e
