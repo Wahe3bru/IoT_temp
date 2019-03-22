@@ -5,8 +5,9 @@ last day of month
  to get last day: https://stackoverflow.com/questions/42950/get-last-day-of-the-month-in-python
 
 schedule:
- $ crontab -e
+ chmod +x scriptName.py # make script executable
 
+ $ crontab -e
  ## Crontab Configuration ##
  0,30 * * * * (bash -c 'cd ~/path/to/script && python scriptName.py')
 
