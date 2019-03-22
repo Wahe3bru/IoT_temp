@@ -1,7 +1,6 @@
 #! /usr/bin/python3
 
 import datetime
-import Adafruit_DHT
 import helper
 
 
@@ -11,7 +10,7 @@ def main():
     month_year = current_time.strftime("%b-%Y")
 
     timestamp = current_time.strftime("%Y-%m-%d %H:%M")
-    humidity, temperature = Adafruit_DHT.read_retry(11, 17)
+    humidity, temperature = helper.sensor_reading()
     row = [timestamp, temperature, humidity]
 
     columns = ['timestamp', 'temperature', 'humidity']
