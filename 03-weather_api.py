@@ -2,8 +2,8 @@
 import requests
 import helper
 import datetime
-import pygsheets
 import os
+
 def create_OWM_api_call(OWMapi_key, city_id='&id=3370352',
                         city_name="&q=Cape Town", use_id=False):
     ''' '''
@@ -28,13 +28,8 @@ def main():
     timestamp = current_time.strftime("%Y-%m-%d %H:%M")
     month_year = current_time.strftime("%b-%Y")
 
-    client = pygsheets.authorize()
-    sh = client.open('Outside_env')
-    try:
-        wks = sh.worksheet_by_title(month_year)
-    except:
-        wks = sh.add_worksheet(month_year, rows=0)
-        wks.append_table(values=['timestamp', 'temperature', 'humidity', 'pressure', 'description'])
+    columns=['timestamp', 'temperature', 'humidity', 'pressure', 'description']
+    wks = helper.open_worksheet('Outside_env', month_year, columns)
 
     api_key = os.getenv('OWMapi_key')
     api_call = create_OWM_api_call(api_key)
