@@ -9,14 +9,14 @@ Hoping to pick up new skills as they are required.
 
 ### Proposed stages of development
 #### stage: Hardware
-- [ ] setup pi
-- [ ] connect sensor to pi
-- [ ] remote setup for headless pi
+- [x] setup pi
+- [x] connect sensor to pi
+- [x] remote setup for headless pi
 
 #### stage: GSheets
-- [ ] post sensor data to gsheets (15 min intervals)
-- [ ] daily statistics script
-- - [ ] min, mean, max for temp and humidity logged
+- [x] post sensor data to gsheets (<s>15</s> 30 min intervals)
+- [x] daily statistics script (executed at 11pm)
+- - [x] min, mean, max for temp and humidity logged
 - - [ ] optional: add outside temperature from weather api
 
 #### stage: AWS RDS
