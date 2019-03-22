@@ -1,0 +1,4 @@
+pygsheets
+Adafruit_DHT
+numpy
+dotenv
