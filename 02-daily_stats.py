@@ -25,7 +25,7 @@ def main():
         if date_col.split(' ')[0] == date:  # is this best way to filter date?
             row_counts += 1
             day_temp.append(int(row[1]))
-            day_hum.append(int(row[1]))
+            day_hum.append(int(row[2]))
 
     # do i create vars below, or plug them directory into day_stats_row list??
     temp_min = str(np.min(day_temp))
