@@ -3,7 +3,8 @@ TODO:
  - (maybe another seperate script) import data as df,
     remove nulls (empty rows and cols),
     then edit the spreadsheet to correct rows and cols
-    save df in edited spreadsheet
+                                  # https://pygsheets.readthedocs.io/en/latest/worksheet.html#pygsheets.Worksheet.set_dataframe
+    save df in edited spreadsheet # set_dataframe(df, start, copy_index=False, copy_head=True, fit=False, escape_formulae=False, **kwargs)
 
 raspi static ip: https://weworkweplay.com/play/automatically-connect-a-raspberry-pi-to-a-wifi-network/
 
