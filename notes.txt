@@ -1,3 +1,10 @@
+TODO:
+ - script to check columns and rows of each spreadsheet (exact rows and cols are required)
+ - (maybe another seperate script) import data as df,
+    remove nulls (empty rows and cols),
+    then edit the spreadsheet to correct rows and cols
+    save df in edited spreadsheet
+
 raspi static ip: https://weworkweplay.com/play/automatically-connect-a-raspberry-pi-to-a-wifi-network/
 
 last day of month
