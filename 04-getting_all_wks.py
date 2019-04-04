@@ -27,11 +27,13 @@ def main():
 
     worksheets = get_worksheet_titles(spreadsheet_name)
 
-    all_df = []
+    all_df = pd.DataFrame()
     for title in worksheets:
          df = worksheet_as_df(spreadsheet_name,title)
          print(title, len(df))
+         all_df = all_df.append(df)
 
     # need to create one big df
+    print('all data: ', len(all_df))
 if __name__ == '__main__':
     main()
