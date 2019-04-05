@@ -1,5 +1,3 @@
-from os.path import join, dirname
-from dotenv import load_dotenv
 import pandas as pd
 import pygsheets
 
