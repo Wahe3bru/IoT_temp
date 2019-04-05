@@ -1,3 +1,9 @@
+''' 1) check size of df
+    2) remove nulls (drop unecessary rows and cols)
+    3) delete worksheet
+    4) create new worksheet (same name)
+    5) insert data 
+'''
 import pandas as pd
 import numpy as np
 import pygsheets
