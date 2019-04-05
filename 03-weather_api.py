@@ -28,7 +28,7 @@ def main():
     timestamp = current_time.strftime("%Y-%m-%d %H:%M")
     month_year = current_time.strftime("%b-%Y")
 
-    columns=['timestamp', 'temperature', 'humidity', 'pressure', 'description']
+    columns=['timestamp', 'humidity', 'temperature', 'pressure', 'description']
     wks = helper.open_worksheet('Outside_env', month_year, columns)
 
     api_key = os.getenv('OWMapi_key')
