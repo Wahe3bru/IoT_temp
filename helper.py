@@ -14,8 +14,8 @@ def open_worksheet(spreadsheet_name, worksheet_title, col_names):
 
     Args:
         spreadsheet_name (str): Name of Spreadsheet document. Has to exist atm.
-        worksheet_title (str): Name of worksheet within spreadsheet.
-        col_names (list): list of column names
+        worksheet_title (str):  Name of worksheet within spreadsheet.
+        col_names (list):       list of column names
     Returns:
         wks: a pygsheets.worksheet object
 
@@ -25,14 +25,20 @@ def open_worksheet(spreadsheet_name, worksheet_title, col_names):
     try:
         wks = sh.worksheet_by_title(worksheet_title)
     except:
-        wks = sh.add_worksheet(worksheet_title, rows=0)
+        wks = sh.add_worksheet(worksheet_title, rows=1, cols=1)
         wks.append_table(values=col_names)
 
     return wks
 
 
 def sensor_reading(attempts=5):
-    '''returns the most common value from sensor reading'''
+    '''returns the most common value from sensor reading
+
+       args:
+           attempts (int): number of readings to take
+       return:
+           tuple: containing value of humidity and temperature
+    '''
     readings = []
     for _ in range(attempts):
         readings.append(Adafruit_DHT.read_retry(11, 17))
