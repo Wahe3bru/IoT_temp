@@ -2,7 +2,13 @@ from os.path import join, dirname
 from dotenv import load_dotenv
 import pygsheets
 import Adafruit_DHT
-
+import os
+import smtplib
+import ssl
+from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+from pathlib import Path
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -48,6 +54,42 @@ def sensor_reading(attempts=5):
     temperature = max(set(temperatures), key=temperatures.count)
     return humidity, temperature
 
+def send_email(username, password, recipient, subject, body):
+    """Send email via Gmail
+
+    :param username: Gmail username that is also used in the "From" field
+        e.g. pyderpuffgirls@gmail.com
+    :param password: Gmail password
+    :param recipient: a string or list of the email address of recipient(s)
+    :param subject: the subject of email
+    :param body: the body of email
+    """
+
+    smtp_server = "smtp.gmail.com"
+    port = 465
+    ssl_context = ssl.create_default_context()
+
+    # https://stackoverflow.com/questions/8856117/how-to-send-email-to-multiple-recipients-using-python-smtplib
+    if isinstance(recipient, str):
+        recipient = [recipient]
+    recipients_string = ', '.join(recipient)  # e.g. "person1@gmail.com, person2@gmail.com"
+
+    # create email
+    email = MIMEMultipart()
+
+    # Add body, then set the email metadata
+    if body is not None:
+        content = MIMEText(body)
+        email.attach(content)
+
+    email['Subject'] = subject
+    email['From'] = username
+    email['To'] = recipients_string
+
+    with smtplib.SMTP_SSL(smtp_server, port, context=ssl_context) as conn:
+        conn.login(username, password)
+        conn.sendmail(username, recipient, email.as_string())
+    pass
 
 def main():
     # testing
