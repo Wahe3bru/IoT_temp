@@ -6,7 +6,7 @@ from telepot.loop import MessageLoop
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 # store the TOKEN for the Telegram Bot
-TOKEN = '620578061:AAFrBCb3MWp-7MgtvrvpYmQgQNGWTck_Kog'
+TOKEN = '620578___:AAFrBCb3MWp-7MgtvrvpYmQgQNGWTck___'
 
 #lt's write all the functions
 
