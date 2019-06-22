@@ -5,8 +5,10 @@ import helper
 
 
 def main():
-
+    
     current_time = datetime.datetime.now()
+    # add check to see if last timestamp != current_time
+    # if not, continue else pass
     month_year = current_time.strftime("%b-%Y")
 
     timestamp = current_time.strftime("%Y-%m-%d %H:%M")
