@@ -1,4 +1,4 @@
-
+import os
 import time
 import telepot
 import helper
@@ -8,9 +8,7 @@ from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 # store the TOKEN for the Telegram Bot
 TOKEN = '620578061:AAFrBCb3MWp-7MgtvrvpYmQgQNGWTck_Kog'
 
-#lt's write all the functions
-
-#The function on_chat creates an inline keyboard
+# The function on_chat creates an inline keyboard
 
 def on_chat_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
@@ -23,7 +21,7 @@ def on_chat_message(msg):
 
     bot.sendMessage(chat_id, "Welcome to the weather bot of Wahe3bru's. What would you like to know?", reply_markup=keyboard)
 
-#The function on_callback_query pprocess the data from Thingspeak and react according to the pushed button
+# The function on_callback_query pprocess the data from Thingspeak and react according to the pushed button
 
 def on_callback_query(msg):
 
@@ -32,17 +30,23 @@ def on_callback_query(msg):
     print('Callback Query:', query_id, from_id, query_data)
 
     if(query_data == 'temp_in'):
-        bot.sendMessage(from_id, text='The temperature inside: ' + '23' + '°C')
+        in_humid, in_temp = helper.sensor_reading()
 
-    elif(query_data == 'umid'):
-        bot.sendMessage(from_id, text="The humidity inside: " + '78' + '%')
+        bot.sendMessage(from_id, text='The temperature inside: ' + str(in_temp) + '°C')
 
-    elif(query_data == 'press'):
+    elif(query_data == 'humid_in'):
+        in_humid, in_temp = helper.sensor_reading()
+
+        bot.sendMessage(from_id, text="The humidity inside: " + str(in_humid) + '%')
+
+    elif(query_data == 'temp_out'):
+        _, out_temp, _, _ = helper.get_weather_from_OWM(api_call)
         bot.sendMessage(from_id, text='The temperature outside: ' + '13' + '°C')
 
 
 #initialize the functions
-
+api_key = os.getenv('OWMapi_key')
+api_call = helper.create_OWM_api_call(api_key)
 
 bot = telepot.Bot(TOKEN)
 MessageLoop(bot, {'chat': on_chat_message,
