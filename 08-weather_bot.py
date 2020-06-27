@@ -4,12 +4,15 @@ import telepot
 import helper
 from telepot.loop import MessageLoop
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
+from os.path import join, dirname
+from dotenv import load_dotenv
 
-# store the TOKEN for the Telegram Bot
-TOKEN = '620578___:AAFrBCb3MWp-7MgtvrvpYmQgQNGWTck___'
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+TOKEN = os.environ['BOT_TOKEN']
 
 # The function on_chat creates an inline keyboard
-
 def on_chat_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
 
@@ -43,7 +46,7 @@ def on_callback_query(msg):
     elif(query_data == 'temp_out'):
         _, out_temp, _, _ = helper.get_weather_from_OWM(api_call)
         bot.sendMessage(from_id, text='The temperature outside: ' + str(out_temp) + '°C')
-    
+
     elif(query_data == 'temp_pic'):
         helper.take_photo()
         fp = open('SendPic.jpg', 'rb')
