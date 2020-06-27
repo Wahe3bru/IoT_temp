@@ -16,7 +16,8 @@ def on_chat_message(msg):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
                    [InlineKeyboardButton(text='Temperature inside', callback_data='temp_in')],
                    [InlineKeyboardButton(text='Humidity inside', callback_data='humid_in')],
-                   [InlineKeyboardButton(text='Temperature outside', callback_data='temp_out')]
+                   [InlineKeyboardButton(text='Temperature outside', callback_data='temp_out')],
+                   [InlineKeyboardButton(text='Take Picture', callback_data='temp_pic')]
                ])
 
     bot.sendMessage(chat_id, "Welcome to the weather bot of Wahe3bru's. What would you like to know?", reply_markup=keyboard)
@@ -41,7 +42,14 @@ def on_callback_query(msg):
 
     elif(query_data == 'temp_out'):
         _, out_temp, _, _ = helper.get_weather_from_OWM(api_call)
-        bot.sendMessage(from_id, text='The temperature outside: ' + '13' + '°C')
+        bot.sendMessage(from_id, text='The temperature outside: ' + str(out_temp) + '°C')
+    
+    elif(query_data == 'temp_pic'):
+        helper.take_photo()
+        fp = open('SendPic.jpg', 'rb')
+        # file_info = telepot.InputFileInfo('SendPic.jpg', fp, 'image/jpg')
+        # telepot.InputFile('photo', file_info)
+        bot.sendPhoto(from_id, photo=fp)
 
 
 #initialize the functions
