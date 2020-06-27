@@ -25,7 +25,7 @@ Hoping to pick up new skills as they are required.
 - [x] post sensor data to gsheets (<s>15</s> 30 min intervals)
 - [x] daily statistics script (executed at 11pm)
 - - [x] min, mean, max for temp and humidity logged
-- - [ ] optional: add outside temperature from weather api
+- - [x] optional: add outside temperature from weather api
 
 #### stage: AWS RDS
 - [ ] create aws rds (mySQL or Postgres)
@@ -36,7 +36,7 @@ Hoping to pick up new skills as they are required.
 
 #### stage: Dashboard
 - [ ] interim: GSheets graphs
-- [ ] basics Dash Dashboard
+- [x] basics Dash Dashboard
 - - [ ] optional: Tableau Dashboard
 - [ ] web accessible Dash Dashboard (login)
 
