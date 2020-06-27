@@ -7,7 +7,7 @@ Hoping to pick up new skills as they are required.
 - pip install Adafruit_DHT
 - pip install python-dotenv
 - pip install telepot
-
+- pip install requests
 
 ##### skills to learn:
 - unit testing
@@ -36,7 +36,7 @@ Hoping to pick up new skills as they are required.
 
 #### stage: Dashboard
 - [ ] interim: GSheets graphs
-- [x] basics Dash Dashboard
+- [ ] basics Dash Dashboard
 - - [ ] optional: Tableau Dashboard
 - [ ] web accessible Dash Dashboard (login)
 
