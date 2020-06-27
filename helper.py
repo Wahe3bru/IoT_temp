@@ -9,6 +9,9 @@ from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from pathlib import Path
+import time
+import picamera
+import requests
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -54,6 +57,38 @@ def sensor_reading(attempts=5):
     temperature = max(set(temperatures), key=temperatures.count)
     return humidity, temperature
 
+def create_OWM_api_call(OWMapi_key, city_id='&id=3370352',
+                        city_name="&q=Cape Town", use_id=False):
+    ''' '''
+    metric_units="&units=metric"
+    BASE_URL="http://api.openweathermap.org/data/2.5/weather?appid="
+    if use_id:
+        api_call = BASE_URL + OWMapi_key + city_id + metric_units
+    else:
+        api_call = BASE_URL + OWMapi_key + city_name + metric_units
+    return api_call
+
+def get_weather_from_OWM(api_call):
+    weather_data = requests.get(api_call).json()
+    temperature = weather_data['main']['temp']
+    humidity = weather_data['main']["humidity"]
+    pressure  = weather_data['main']['pressure']
+    description = weather_data['weather'][0]['description']
+    return [humidity, temperature, pressure, description]
+
+def take_photo():
+    in_humid, in_temp = sensor_reading()
+    annotation_txt = f' Temp: {in_temp}C Hum: {in_humid}% '
+    with picamera.PiCamera() as camera:
+        camera.resolution = (1024, 768)
+        camera.annotate_background = picamera.Color('black')
+        camera.annotate_text = annotation_txt
+        camera.start_preview()
+        # Camera warm-up time
+        time.sleep(2)
+        print('taking pic')
+        camera.capture('SendPic.jpg')
+        
 def send_email(username, password, recipient, subject, body):
     """Send email via Gmail
 
