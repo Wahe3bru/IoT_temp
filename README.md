@@ -1,6 +1,14 @@
 # IoT_temp
 A multi stage project in learning IoT; the logic and planning involved. <br>
 Hoping to pick up new skills as they are required.
+
+###### Required:
+- pip install pygsheets
+- pip install Adafruit_DHT
+- pip install python-dotenv
+- pip install telepot
+
+
 ##### skills to learn:
 - unit testing
 - data pipeline/s (luigi / airflow)
