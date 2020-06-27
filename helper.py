@@ -59,7 +59,14 @@ def sensor_reading(attempts=5):
 
 def create_OWM_api_call(OWMapi_key, city_id='&id=3370352',
                         city_name="&q=Cape Town", use_id=False):
-    ''' '''
+    """Create api call for city by id or name
+
+    args:
+        OWMapi_key (str): personal OWM key
+        city_id (str): id of city
+        city_name (str): name of city
+        use_id (bool): flag for using city_id
+    """
     metric_units="&units=metric"
     BASE_URL="http://api.openweathermap.org/data/2.5/weather?appid="
     if use_id:
@@ -69,6 +76,13 @@ def create_OWM_api_call(OWMapi_key, city_id='&id=3370352',
     return api_call
 
 def get_weather_from_OWM(api_call):
+    """Gets humidity, temperature, pressure, description from OWM
+
+    args:
+        api_call (str): api_call for weather of city
+    returns:
+        list containing humidity, temperature, pressure, description
+    """
     weather_data = requests.get(api_call).json()
     temperature = weather_data['main']['temp']
     humidity = weather_data['main']["humidity"]
@@ -77,6 +91,8 @@ def get_weather_from_OWM(api_call):
     return [humidity, temperature, pressure, description]
 
 def take_photo():
+    """Takes picture and annotates current temp and humidity"""
+
     in_humid, in_temp = sensor_reading()
     annotation_txt = f' Temp: {in_temp}C Hum: {in_humid}% '
     with picamera.PiCamera() as camera:
@@ -88,7 +104,7 @@ def take_photo():
         time.sleep(2)
         print('taking pic')
         camera.capture('SendPic.jpg')
-        
+
 def send_email(username, password, recipient, subject, body):
     """Send email via Gmail
 
